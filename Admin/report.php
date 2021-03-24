@@ -1,9 +1,9 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
-$sql="SELECT (select category_name from category where category_id = c.category_id) as catname , (select sub_category_name from sub_category where sub_category_id = sub.sub_category_id ) as subcatname , sum(item.amount) as total FROM `order_item` item join product p join sub_category sub join category c where item.product_id = p.product_id and p.sub_category_id =sub.sub_category_id and sub.category_id = c.category_id GROUP by item.product_id";
+include("../config/dbconn.php");
+$sql="SELECT (select cat_name from category where cat_id = c.cat_id) as cat_name , (select subcat_name from subcategory where subcat_id = sub.subcat_id ) as subcat_name , sum(item.amount) as total FROM `order_item` item join service s join subcategory sub join category c where item.ser_id = s.ser_id and s.subcat_id =sub.subcat_id and sub.cat_id = c.cat_id GROUP by item.ser_id";
 $result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  -  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@ $result=mysqli_query($conn,$sql);
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
        
             <!-- MAIN CONTENT-->
@@ -74,7 +74,7 @@ $result=mysqli_query($conn,$sql);
                                             <tr>
                                                 
                                                 <th>category_name</th>
-												 <th>sub_category_name</th>
+												 <th>subcategory_name</th>
                                                 <th>total</th>
 												
                                                 
@@ -89,9 +89,9 @@ $result=mysqli_query($conn,$sql);
                                             <tr class="tr-shadow">
                                                 
 												
-												<td><?php echo $row['catname']?></td>
+												<td><?php echo $row['cat_name']?></td>
                                                 <td>
-                                                   <?php echo $row['subcatname']?>
+                                                   <?php echo $row['subcat_name']?>
                                                 </td>
 												<td>
                                                    <?php echo $row['total']?>

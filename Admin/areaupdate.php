@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	if(isset($_GET['id']))
 	{
 		$id = $_GET['id'];
@@ -50,7 +50,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -83,8 +83,8 @@ include("header.php");
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">area code</label>
-													<input type="text" name="txtcode" class="form-control" id="exampleinputemail" placeholder="sub code" value="<?php echo $row['area_code'];?>">
+                                                    <label for="hf-password" class=" form-control-label">area id</label>
+													<input type="text" name="txtid" class="form-control" id="exampleinputemail" placeholder="sub code" value="<?php echo $row['area_id'];?>">
                                                 </div>
                                                 
                                             </div>
@@ -99,15 +99,15 @@ include("header.php");
 									<?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-		if (isset($_POST["txtname"]) && isset($_POST["txtcode"]))
+		if (isset($_POST["txtname"]) && isset($_POST["txtid"]))
 		{
 			$area_name=$_POST["txtname"];
-			$area_code=$_POST["txtcode"];
+			$area_id=$_POST["txtid"];
 		
 				
-			if(($area_name!='') && ($area_code!=''))
+			if(($area_name!='') && ($area_id!=''))
 			{				
-				$sql="update area set area_name='".$area_name."',area_code='".$area_code."' where area_id = '".$id."'";
+				$sql="update area set area_name='".$area_name."',area_id='".$area_id."' where area_id = '".$id."'";
 				$result=mysqli_query($conn,$sql); 
 				if($result)
 				{

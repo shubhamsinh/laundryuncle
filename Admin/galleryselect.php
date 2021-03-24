@@ -1,9 +1,9 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
-$sql="select * from gallery g join product p where g.product_id = p.product_id";
+include("../config/dbconn.php");
+$sql="select * from gallary g join service p where g.ser_id = p.ser_id";
 $result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  -  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@ $result=mysqli_query($conn,$sql);
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
        
             <!-- MAIN CONTENT-->
@@ -75,7 +75,7 @@ $result=mysqli_query($conn,$sql);
                                             <tr>
 												
                                                  <th>image</th>
-												<th>product_name</th>
+												<th>service_name</th>
                                                
 												
                                                 <th></th>
@@ -85,14 +85,14 @@ $result=mysqli_query($conn,$sql);
 										<?php
 										while($row=mysqli_fetch_array($result))
 										{
-											$id=$row['gallery_id'];
+											$id=$row['img_id'];
 										?>
                                             <tr class="tr-shadow">
                                                 
                                                 <td>
-                                                   <img src="../client/demo.designshopify.com/html_modez/assets/images/<?php echo $row['image']?>" style="height:100" />
+                                                   <img src="../user/img/<?php echo $row['img_path']?>" style="height:100" />
                                                 </td>
-												 <td><?php echo $row['product_name']?></td>
+												 <td><?php echo $row['ser_name']?></td>
 												
 												 <td>
                                                     

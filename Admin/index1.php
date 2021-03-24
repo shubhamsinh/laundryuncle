@@ -1,16 +1,10 @@
-<?php
-include("header1.php");
-?>
-<?php
-include("../config/dbconn.php");
-$id=$_GET['id'];
-$sql="select * from order_item o join service s join order e where o.ser_id = s.ser_id and o.order_id= e.order_id and e.order_id=$id";
-
-$result=mysqli_query($conn,$sql);
-?>
 <!DOCTYPE html>
 <html lang="en">
 
+    <?php
+    include("header1.php");
+    require_once('../config/dbconn.php');
+    ?>
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -20,7 +14,7 @@ $result=mysqli_query($conn,$sql);
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Tables</title>
+    <title>Laundry Uncle</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -39,81 +33,73 @@ $result=mysqli_query($conn,$sql);
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
 
-<body class="animsition" style="padding-left:300px">
-    <div class="page-wrapper">
-       
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
+<body class="animsition">
+    
+
+
+        <div class="page-container2">
+
+            <!-- STATISTIC-->
+            <section class="statistic">
                 <div class="section__content section__content--p30">
-                    
+                    <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
-                                <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">data table</h3>
-                                <div class="table-data__tool">
-                                    <div class="table-data__tool-left">
-                                        
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <h2 class="number">10,368</h2>
+                                    <span class="desc">Total User</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-account-o"></i>
                                     </div>
-                                    
                                 </div>
-                                <div class="table-responsive table-responsive-data2">
-                                    <table class="table table-data2">
-                                        <thead>
-                                            <tr>
-                                                
-                                                <th>service_name</th>
-												<th>quantity</th>
-                                                <th>order_date</th>
-												<th>amount</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-										<?php
-										while($row=mysqli_fetch_array($result))
-										{
-											$id=$row['item_id'];
-										?>
-                                            <tr class="tr-shadow">
-                                                
-												
-												<td><?php echo $row['ser_name']?></td>
-                                                <td>
-                                                   <?php echo $row['quantity']?>
-                                                </td>
-												<td>
-                                                   <?php echo $row['order_date']?>
-                                                </td>
-												<td><?php echo $row['amount']?></td>
-												
-                                            </tr>
-                                           
-											  <?php
-										}
-											?>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- END DATA TABLE -->
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                           
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <h2 class="number">388,688</h2>
+                                    <span class="desc">Total Order</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <h2 class="number">1,086</h2>
+                                    <span class="desc">User Feedback</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-calendar-note"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item">
+                                    <h2 class="number">$1,060,386</h2>
+                                    <span class="desc">Total area</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-money"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+            <!-- END STATISTIC-->
 
-    </div>
+
+
+            <?php
+    include("footer.php");
+    ?>  
+        </div>
+        
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
@@ -135,6 +121,10 @@ $result=mysqli_query($conn,$sql);
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
+    <script src="vendor/vector-map/jquery.vmap.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.min.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.sampledata.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.world.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
@@ -143,6 +133,3 @@ $result=mysqli_query($conn,$sql);
 
 </html>
 <!-- end document-->
-<?php
-include("footer.php");
-?>

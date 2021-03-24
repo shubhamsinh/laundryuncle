@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	if(isset($_GET['id']))
 	{
 		$id = $_GET['id'];
-		$sql = "select * from category where category_id = $id";
+		$sql = "select * from category where cat_id = $id";
 		$result = mysqli_query($conn,$sql);
 		$row=mysqli_fetch_array($result);
 	}
@@ -50,7 +50,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -79,12 +79,12 @@ include("header.php");
                                             <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">category name</label>
-													<input type="text" name="txtname" class="form-control" id="exampleinputemail" placeholder="sub name" value="<?php echo $row['category_name'];?>">
+													<input type="text" name="txtname" class="form-control" id="exampleinputemail" placeholder="sub name" value="<?php echo $row['cat_name'];?>">
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">category description</label>
-													<input type="text" name="txtdesc" class="form-control" id="exampleinputemail" placeholder="sub description" value="<?php echo $row['description'];?>">
+                                                    <label for="hf-password" class=" form-control-label">category image</label>
+													<input type="file" name="catimg" class="form-control" id="exampleinputemail" placeholder="sub description" value="<?php echo $row['cat_img'];?>">
                                                 </div>
                                                 
                                             </div>
@@ -99,15 +99,15 @@ include("header.php");
 									<?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-		if (isset($_POST["txtname"]) && isset($_POST["txtdesc"]))
+		if (isset($_POST["txtname"]) && isset($_POST["catimg"]))
 		{
-			$category_name=$_POST["txtname"];
-			$description=$_POST["txtdesc"];
+			$cat_name=$_POST["txtname"];
+			$cat_img=$_POST["catimg"];
 		
 				
-			if(($category_name!='') && ($description!=''))
+			if(($cat_name!='') && ($cat_img!=''))
 			{				
-				$sql="update category set category_name='".$category_name."',description='".$description."' where category_id = '".$id."'";
+				$sql="update category set cat_name='".$cat_name."',cat_img='".$cat_img."' where cat_id = '".$id."'";
 				$result=mysqli_query($conn,$sql); 
 				if($result)
 				{

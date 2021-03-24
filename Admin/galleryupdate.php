@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	if(isset($_GET['id']) && isset($_GET['name']))
 {
 	$id = $_GET['id'];
 	$name = $_GET['name'];
-	$sql="select * from gallery where gallery_id='".$id."'";
+	$sql="select * from gallary where img_id='".$id."'";
 	
     $result=mysqli_query($conn,$sql);
 	$row=mysqli_fetch_array($result);
@@ -15,7 +15,7 @@
 	
 ?>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <html lang="en">
 
@@ -53,7 +53,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -79,20 +79,20 @@ include("header.php");
                                     <div class="card-body card-block">
                                         <form action="" method="post" class="form-horizontal">
                                            <div class="form-group">
-											<label for="focusedinput" class="col-sm-2 control-label">Product Name</label>
+											<label for="focusedinput" class="col-sm-2 control-label">Service Name</label>
 											<div class="col-sm-8">
 											<select name="t2" class="form-control">
 											
 												<?php
-													$sql1="select * from product";											
+													$sql1="select * from service";											
 													$result1=mysqli_query($conn,$sql1);
 													while($row1=mysqli_fetch_array($result1))
 													{
 													?>
 				
-													<option value="<?php echo $row1['product_id'];?>" 
-													<?php if($row1['product_name']==$name) echo "selected"; ?>>
-													<?php echo $row1['product_name'];?>
+													<option value="<?php echo $row1['ser_id'];?>" 
+													<?php if($row1['ser_name']==$name) echo "selected"; ?>>
+													<?php echo $row1['ser_name'];?>
 													</option>
 													<?php 
 													}
@@ -104,7 +104,7 @@ include("header.php");
                                             <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">image</label>
-													<input type="text" name="txtimg" class="form-control"  placeholder="subname" value="<?php echo $row['image']?>">
+													<input type="text" name="txtimg" class="form-control"  placeholder="subname" value="<?php echo $row['img_path']?>">
                                                 </div>
 												 
                                                 
@@ -123,13 +123,13 @@ include("header.php");
 if (isset($_POST["txtimg"]) && isset($_POST["t2"]) )
 {
 	$image = $_POST["txtimg"];
-	$product_id =$_POST["t2"];
+	$ser_id =$_POST["t2"];
 	
 	
-	if ($image!='' && $product_id!='')
+	if ($image!='' && $ser_id!='')
 	{
-		$sql = "update gallery set  image='".$image."' ,product_id='".$product_id."'
-		where gallery_id = '".$id."' ";
+		$sql = "update gallary set  img_path='".$image."' ,ser_id='".$ser_id."'
+		where img_id = '".$id."' ";
 		$result = mysqli_query($conn,$sql);
 		
 

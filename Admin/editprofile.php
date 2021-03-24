@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include("header.php");
+include("header1.php");
 ?>
 <?php 
-include("../config/connection.php");
+include("../config/dbconn.php");
 
 $id=$_SESSION['email'];
 $sql = "select * from user u join area a where u.area_id = a.area_id and email = '".$id."'";
 $result = mysqli_query($conn,$sql);
 $row=mysqli_fetch_array($result);
-$uid = $row['user_id'];
+$uid = $row['u_id'];
 ?>
 
 <html lang="en">
@@ -49,7 +49,7 @@ $uid = $row['user_id'];
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -100,7 +100,7 @@ $uid = $row['user_id'];
                                                 
                                                     <label for="focusedinput" class="col-sm-2 control-label">User Name</label>
 													<div class="col-sm-8">
-													<input type="text" name="txtname" class="form-control"  placeholder="user name" value="<?php echo $row['user_name']?>">
+													<input type="text" name="txtname" class="form-control"  placeholder="user name" value="<?php echo $row['u_name']?>">
 													</div>
                                                 </div>
 												 <div class="form-group">
@@ -130,13 +130,13 @@ $uid = $row['user_id'];
 													<input type="text" name="txtno" class="form-control"  placeholder="contact no" value="<?php echo $row['contact_no']?>">
 													</div>
                                                 </div>
-												<div class="form-group">
+												<!-- <div class="form-group">
                                                 
                                                    <label for="focusedinput" class="col-sm-2 control-label">Birth date</label>
 													<div class="col-sm-8">
 													<input type="date" name="txtdate" class="form-control"  placeholder="birth date" value="<?php echo $row['birth_date']?>">
 													</div>
-                                                </div>
+                                                </div> -->
                                                 
                                             </div>
 											 <div class="card-footer" >
@@ -150,7 +150,7 @@ $uid = $row['user_id'];
 									<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-if (isset($_POST["t2"]) && isset($_POST["txtname"]) && isset($_POST["txtadd"]) && isset($_POST["txtemail"]) && isset($_POST["txtpass"]) && isset($_POST["txtno"]) && isset($_POST["txtdate"]))
+if (isset($_POST["t2"]) && isset($_POST["txtname"]) && isset($_POST["txtadd"]) && isset($_POST["txtemail"]) && isset($_POST["txtpass"]) && isset($_POST["txtno"]) )
 {
 	$area_id =$_POST["t2"];
 	$name = $_POST["txtname"];
@@ -158,13 +158,12 @@ if (isset($_POST["t2"]) && isset($_POST["txtname"]) && isset($_POST["txtadd"]) &
 	$email = $_POST["txtemail"];
 	$password = $_POST["txtpass"];
 	$contact =$_POST["txtno"];
-	$birth_date =$_POST["txtdate"];
 	
 	
-	if ($area_id!='' && $name!='' && $address!='' && $email!='' && $password!='' && $contact!='' && $birth_date!='')
+	
+	if ($area_id!='' && $name!='' && $address!='' && $email!='' && $password!='' && $contact!='' )
 	{
-		$sql = "update user set area_id='".$area_id."' ,user_name='".$name."' ,address='".$address."' ,email='".$email."' ,password='".$password."',contact_no='".$contact."',birth_date='".$birth_date."'
-		where email = '".$id."' ";
+		$sql = "update user set area_id='".$area_id."' ,u_name='".$name."' ,address='".$address."' ,email='".$email."' ,password='".$password."',contact_no='".$contact."'	where email = '".$id."' ";
 		$result = mysqli_query($conn,$sql);
 		
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
 	require_once('../config/dbconn.php');
@@ -43,7 +43,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -97,8 +97,8 @@ include("header.php");
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">category description</label>
-													<input type="text" name="txtdesc" class="form-control" id="exampleinputemail" placeholder="sub description">
+                                                    <label for="hf-password" class=" form-control-label">category image</label>
+													<input type="file" name="catimg" class="form-control" id="exampleinputemail" placeholder="sub image">
                                                 </div>
                                                 
                                             </div>
@@ -113,20 +113,20 @@ include("header.php");
 									<?php
 	if($_SERVER["REQUEST_METHOD"]=="POST")
 	{
-		if(isset($_POST["txtname"]) && ($_POST["txtdesc"]))
+		if(isset($_POST["txtname"]) && ($_POST["catimg"]))
 		{
 			
 			
 			$txtname=$_POST["txtname"];
-			$txtdesc=$_POST["txtdesc"];
+			$catimg=$_POST["catimg"];
 			
 			
 		
 			
-			if($txtname!='' && $txtdesc!='')
+			if($txtname!='' && $catimg!='')
 			{
-				$sql="insert into category(category_name,description)
-				values('".$txtname."','".$txtdesc."')";
+				$sql="insert into category(cat_name,cat_img)
+				values('".$txtname."','".$catimg."')";
                   //echo $sql;
 				 
 				

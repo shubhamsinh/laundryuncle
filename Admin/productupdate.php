@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	if(isset($_GET['id']) && isset($_GET['name']))
 {
 	$id = $_GET['id'];
 	$name = $_GET['name'];
-	$sql="select * from product where product_id='".$id."'";
+	$sql="select * from service where ser_id='".$id."'";
 	
     $result=mysqli_query($conn,$sql);
 	$row=mysqli_fetch_array($result);
@@ -15,7 +15,7 @@
 	
 ?>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <html lang="en">
 
@@ -53,7 +53,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -90,9 +90,9 @@ include("header.php");
 													{
 													?>
 				
-													<option value="<?php echo $row1['sub_category_id'];?>" 
-													<?php if($row1['sub_category_name']==$name) echo "selected"; ?>>
-													<?php echo $row1['sub_category_name'];?>
+													<option value="<?php echo $row1['subcat_id'];?>" 
+													<?php if($row1['subcat_name']==$name) echo "selected"; ?>>
+													<?php echo $row1['subcat_name'];?>
 													</option>
 													<?php 
 													}
@@ -101,12 +101,12 @@ include("header.php");
 												</div>
 											
 										</div>
-											<div class="form-group">
+											<!-- <div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">Seller Name</label>
 											<div class="col-sm-8">
 											<select name="t3" class="form-control">
 											
-												<?php
+												<?php /*
 													$sql1="select * from seller";											
 													$result1=mysqli_query($conn,$sql1);
 													while($row1=mysqli_fetch_array($result1))
@@ -116,17 +116,17 @@ include("header.php");
 													<option value="<?php echo $row1['seller_id'];?>" 
 													<?php if($row1['seller_name']==$name) echo "selected"; ?>>
 													<?php echo $row1['seller_name'];?>
-													</option>
+													</option> 
 													<?php 
-													}
+													} */
 													?>
 												</select>
-												</div>
+												</div> -->
 											
 										</div>
                                             <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">product name</label>
+                                                    <label for="hf-password" class=" form-control-label">Service name</label>
 													<input type="text" name="txtname" class="form-control"  placeholder="subname" value="<?php echo $row['product_name']?>">
                                                 </div>
 												 <div class="row form-group">
@@ -136,15 +136,15 @@ include("header.php");
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">product price</label>
+                                                    <label for="hf-password" class=" form-control-label">Service price</label>
 													<input type="text" name="txtpri" class="form-control"  placeholder="sub description" value="<?php echo $row['product_price']?>">
                                                 </div>
-												 <div class="row form-group">
+												 <!-- <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">size</label>
 													<input type="text" name="txtsize" class="form-control"  placeholder="sub description" value="<?php echo $row['size']?>">
                                                 </div>
-                                                
+                                                 -->
                                             </div>
 											 <div class="card-footer" >
                                         <button type="submit" class="btn btn-primary btn-sm" method="POST">
@@ -157,20 +157,18 @@ include("header.php");
 									<?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-if (isset($_POST["txtname"]) && isset($_POST["t2"]) && isset($_POST["txtdesc"]) && isset($_POST["txtpri"]) && isset($_POST["txtsize"]) && isset($_POST["t3"]))
+if (isset($_POST["txtname"]) && isset($_POST["t2"]) && isset($_POST["txtdesc"]) && isset($_POST["txtpri"]) )
 {
-	$product_name = $_POST["txtname"];
-	$sub_category_id =$_POST["t2"];
+	$ser_name = $_POST["txtname"];
+	$subcat_id =$_POST["t2"];
 	$description = $_POST["txtdesc"];
-	$product_price = $_POST["txtpri"];
-	$size = $_POST["txtsize"];
-	$seller_id =$_POST["t3"];
+	$ser_price = $_POST["txtpri"];
 	
 	
-	if ($product_name!='' && $sub_category_id!='' && $description!='' && $product_price!='' && $size!='' && $seller_id!='')
+	
+	if ($ser_name!='' && $subcat_id!='' && $description!='' && $ser_price!='' )
 	{
-		$sql = "update product set product_name='".$product_name."' ,sub_category_id='".$sub_category_id."' ,description='".$description."' ,product_price='".$product_price."' ,size='".$size."' ,seller_id='".$seller_id."'
-		where product_id = '".$id."' ";
+		$sql = "update service set ser_name='".$ser_name."' ,subcat_id='".$subcat_id."' ,ser_desc='".$description."' ,ser_price='".$ser_price."' where ser_id = '".$id."' ";
 		$result = mysqli_query($conn,$sql);
 		
 

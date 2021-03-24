@@ -1,9 +1,9 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
-$sql="select s.sub_category_id,s.sub_category_name,c.category_name,s.sub_category_description from sub_category s join category c where s.category_id = c.category_id";
+include("../config/dbconn.php");
+$sql="select s.subcat_id,s.subcat_name,c.cat_name,s.subcat_img from subcategory s join category c where s.cat_id = c.cat_id";
 $result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  -  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@ $result=mysqli_query($conn,$sql);
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
        
             <!-- MAIN CONTENT-->
@@ -75,8 +75,8 @@ $result=mysqli_query($conn,$sql);
                                             <tr>
                                                 
                                                 <th>category_name</th>
-												 <th>sub_category_name</th>
-                                                <th>sub_category_description</th>
+												 <th>subcategory_name</th>
+                                                <th>subcategory_image</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -84,17 +84,17 @@ $result=mysqli_query($conn,$sql);
 										<?php
 										while($row=mysqli_fetch_array($result))
 										{
-											$id=$row['sub_category_id'];
+											$id=$row['subcat_id'];
 										?>
                                             <tr class="tr-shadow">
                                                 
 												
-												<td><?php echo $row['category_name']?></td>
+												<td><?php echo $row['cat_name']?></td>
                                                 <td>
-                                                   <?php echo $row['sub_category_name']?>
+                                                   <?php echo $row['subcat_name']?>
                                                 </td>
 												<td>
-                                                   <?php echo $row['sub_category_description']?>
+                                                   <?php echo $row['subcat_img']?>
                                                 </td>
 												
 												
@@ -103,7 +103,7 @@ $result=mysqli_query($conn,$sql);
 												<img src="1.png" height="50" width="50"/></a>
 												
 												
-												<a href="subcategoryupdate.php ?id=<?php echo $row['sub_category_id']?>&name=<?php echo $row['category_name']?>">
+												<a href="subcategoryupdate.php ?id=<?php echo $row['subcat_id']?>&name=<?php echo $row['cat_name']?>">
 												<img src="2.png" height="50" width="50"/></a>
                                                 </td>
                                             </tr>

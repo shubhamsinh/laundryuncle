@@ -1,9 +1,9 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
-$sql="select * from feedback f join user u where f.user_id = u.user_id";
+include("../config/dbconn.php");
+$sql="select * from feedback f join user u where f.u_id = u.u_id";
 $result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  -  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@ $result=mysqli_query($conn,$sql);
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
        
             <!-- MAIN CONTENT-->
@@ -82,9 +82,9 @@ $result=mysqli_query($conn,$sql);
                                             <tr class="tr-shadow">
                                                 
 												
-												<td><?php echo $row['description']?></td>
+												<td><?php echo $row['feedback_detail']?></td>
                                                 <td>
-                                                   <?php echo $row['user_name']?>
+                                                   <?php echo $row['u_name']?>
                                                 </td>
 												<td>
                                                    <?php echo $row['feedback_date']?>

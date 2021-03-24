@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	
 	
 ?>
@@ -43,7 +43,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -70,21 +70,21 @@ include("header.php");
                                         <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
                                             <div class="row form-group">
                                                 <div class="col col-md-2">
-                                                    <label for="hf-email" class=" form-control-label">product name</label>
+                                                    <label for="hf-email" class=" form-control-label">Service name</label>
                                                 </div>
                                                 <div class="col-12 col-md-10">
                                                 <select name="t2" class="form-control">
 												
 												<?php
-													$sql1="select * from product";
+													$sql1="select * from service";
 													$result1=mysqli_query($conn,$sql1);
 													
 													while($row1=mysqli_fetch_array($result1))
 													{
 														
 												?>
-													<option value="<?php echo $row1['product_id'];?>"> 
-													<?php echo $row1['product_name'];?>
+													<option value="<?php echo $row1['ser_id'];?>"> 
+													<?php echo $row1['ser_name'];?>
 													</option>
 													<?php
 													}
@@ -129,10 +129,10 @@ include("header.php");
 			
 			$t2=$_POST["t2"];
 			
-		if(move_uploaded_file($file_tmp,"../client/demo.designshopify.com/html_modez/assets/images/".$file_name)==1)
+		if(move_uploaded_file($file_tmp,"../user/img/".$file_name)==1)
 		{
 			
-				$sql="insert into gallery(image,product_id)
+				$sql="insert into gallery(image,ser_id)
 				values('".$file_name."','".$t2."')";
                   //echo $sql;
 				 

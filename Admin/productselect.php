@@ -1,9 +1,9 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
-$sql="select * from product p join sub_category s join seller e where p.sub_category_id = s.sub_category_id and p.seller_id = e.seller_id order by product_id";
+include("../config/dbconn.php");
+$sql="select * from service p join subcategory s  where p.subcat_id = s.subcat_id";
 $result=mysqli_query($conn,$sql);
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $result=mysqli_query($conn,$sql);
     <!-- Vendor CSS-->
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-  -  <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
     <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -43,7 +43,7 @@ $result=mysqli_query($conn,$sql);
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
        
             <!-- MAIN CONTENT-->
@@ -53,7 +53,7 @@ $result=mysqli_query($conn,$sql);
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">Product table</h3>
+                                <h3 class="title-5 m-b-35">Service table</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         
@@ -74,12 +74,11 @@ $result=mysqli_query($conn,$sql);
                                         <thead>
                                             <tr>
                                                 
-                                                <th>product_name</th>
-												 <th>sub_category_name</th>
+                                                <th>Service_name</th>
+												 <th>subcategory_name</th>
                                                 <th>description</th>
-												<th>product_price</th>
-												 <th>size</th>
-                                                <th>seller_name</th>
+												<th>service_price</th>
+												 
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -87,21 +86,19 @@ $result=mysqli_query($conn,$sql);
 										<?php
 										while($row=mysqli_fetch_array($result))
 										{
-											$id=$row['product_id'];
+											$id=$row['ser_id'];
 										?>
                                             <tr class="tr-shadow">
                                                 
 												
-												<td><?php echo $row['product_name']?></td>
+												<td><?php echo $row['ser_name']?></td>
                                                 <td>
-                                                   <?php echo $row['sub_category_name']?>
+                                                   <?php echo $row['subcat_name']?>
                                                 </td>
 												<td>
-                                                   <?php echo $row['description']?>
+                                                   <?php echo $row['ser_desc']?>
                                                 </td>
-												<td><?php echo $row['product_price']?></td>
-												<td><?php echo $row['size']?></td>
-												<td><?php echo $row['seller_name']?></td>
+												<td><?php echo $row['ser_price']?></td>
 												
 												
                                                 <td>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <?php
-//include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	$sql3="select * from category";
 	$result3 = mysqli_query($conn,$sql3);
-	$sql1="select * from sub_category";
+	$sql1="select * from subcategory";
 	$result1 = mysqli_query($conn,$sql1);
-	$sql2="select * from seller";
-	$result2 = mysqli_query($conn,$sql2);
+	/*$sql2="select * from seller";
+	$result2 = mysqli_query($conn,$sql2);*/
 	
 	
 ?>
@@ -65,7 +65,7 @@ function getsubcategory(val)
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -105,8 +105,8 @@ function getsubcategory(val)
 													{
 														
 												?>
-													<option value="<?php echo $row3['category_id'];?>"> 
-													<?php echo $row3['category_name'];?>
+													<option value="<?php echo $row3['cat_id'];?>"> 
+													<?php echo $row3['cat_name'];?>
 													</option>
 													<?php
 													}
@@ -127,14 +127,14 @@ function getsubcategory(val)
                                                 </div>
 												
                                             </div>
-											<div class="row form-group">
+											<!--<div class="row form-group">
 											<div class="col col-md-2">
                                                     <label for="hf-email" class=" form-control-label">seller name</label>
                                                 </div>
 											<div class="col-12 col-md-10">
                                                 <select name="t3" class="form-control">
-												
-												<?php
+
+												<?php /*
 													$sql2="select * from seller";
 													$result2=mysqli_query($conn,$sql2);
 													
@@ -147,32 +147,32 @@ function getsubcategory(val)
 													</option>
 													<?php
 													}
-													?>
+												*/	?>
 												</select>
                                             </div>
 												
-											 </div>
+											 </div> -->
                                            
                                             <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">product name</label>
-													<input type="text" name="txtname" class="form-control" id="exampleinputemail" placeholder="sub name">
+                                                    <label for="hf-password" class=" form-control-label">Service name</label>
+													<input type="text" name="txtname" class="form-control" id="exampleinputemail" placeholder="ser name">
                                                 </div>
 												 <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">description</label>
-													<input type="text" name="txtdesc" class="form-control" id="exampleinputemail" placeholder="sub description">
+													<input type="text" name="txtdesc" class="form-control" id="exampleinputemail" placeholder="ser description">
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">product price</label>
-													<input type="text" name="txtpri" class="form-control" id="exampleinputemail" placeholder="sub price">
+                                                    <label for="hf-password" class=" form-control-label">Service price</label>
+													<input type="text" name="txtpri" class="form-control" id="exampleinputemail" placeholder="ser price">
                                                 </div>
-												 <div class="row form-group">
+												 <!-- <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">size</label>
 													<input type="text" name="txtsize" class="form-control" id="exampleinputemail" placeholder="sub size">
-                                                </div>
+                                                </div> -->
                                                 
                                             </div>
 											 <div class="card-footer" >
@@ -186,23 +186,22 @@ function getsubcategory(val)
 <?php
 	if($_SERVER["REQUEST_METHOD"]=="POST")
 	{
-		if(isset($_POST["txtname"]) && ($_POST["txtdesc"]) && ($_POST["txtpri"]) && ($_POST["txtsize"]) && ($_POST["t2"]) && ($_POST["t3"]))
+		if(isset($_POST["txtname"]) && ($_POST["txtdesc"]) && ($_POST["txtpri"])  && ($_POST["t2"]))
 		{
 			
 			
 			$txtname=$_POST["txtname"];
 			$txtdesc=$_POST["txtdesc"];
 			$txtpri=$_POST["txtpri"];
-			$txtsize=$_POST["txtsize"];
 			$t2=$_POST["t2"];
-			$t3=$_POST["t3"];
+			
 			
 		
 			
-			if($txtname!='' && $txtdesc!='' && $txtpri!='' && $txtsize!='' && $t2!=''  && $t3!='')
+			if($txtname!='' && $txtdesc!='' && $txtpri!='' && $t2!='' )
 			{
-				$sql="insert into product(product_name,description,product_price,size,sub_category_id,seller_id)
-				values('".$txtname."','".$txtdesc."','".$txtpri."','".$txtsize."','".$t2."','".$t3."')";
+				$sql="insert into service(ser_name,ser_desc,ser_price,subcat_id)
+				values('".$txtname."','".$txtdesc."','".$txtpri."','".$t2."')";
 				
 				$result=mysqli_query($conn,$sql);
 				

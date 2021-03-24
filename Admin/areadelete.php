@@ -1,6 +1,6 @@
 <?php
 
-require_once("../config/connection.php");
+require_once("../config/dbconn.php");
 
 if(isset($_GET['id']))
 {

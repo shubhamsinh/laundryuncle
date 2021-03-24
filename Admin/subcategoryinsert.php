@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	
 	
 ?>
@@ -43,7 +43,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -83,8 +83,8 @@ include("header.php");
 													{
 														
 												?>
-													<option value="<?php echo $row1['category_id'];?>"> 
-													<?php echo $row1['category_name'];?>
+													<option value="<?php echo $row1['cat_id'];?>"> 
+													<?php echo $row1['cat_name'];?>
 													</option>
 													<?php
 													}
@@ -99,8 +99,8 @@ include("header.php");
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">sub category description</label>
-													<input type="text" name="txtdesc" class="form-control" id="exampleinputemail" placeholder="sub description">
+                                                    <label for="hf-password" class=" form-control-label">sub category image</label>
+													<input type="file" name="subimg" class="form-control" id="exampleinputemail" placeholder="sub image">
                                                 </div>
                                                 
                                             </div>
@@ -115,20 +115,20 @@ include("header.php");
 									<?php
 	if($_SERVER["REQUEST_METHOD"]=="POST")
 	{
-		if(isset($_POST["txtname"]) && ($_POST["txtdesc"]) && ($_POST["t2"]))
+		if(isset($_POST["txtname"]) && ($_POST["subimg"]) && ($_POST["t2"]))
 		{
 			
 			
 			$txtname=$_POST["txtname"];
-			$txtdesc=$_POST["txtdesc"];
+			$txtdesc=$_POST["subimg"];
 			$t2=$_POST["t2"];
 			
 		
 			
-			if($txtname!='' && $txtdesc!=''&& $t2!='')
+			if($txtname!='' && $subimg!=''&& $t2!='')
 			{
-				$sql="insert into sub_category(sub_category_name,sub_category_description,category_id)
-				values('".$txtname."','".$txtdesc."','".$t2."')";
+				$sql="insert into subcategory(subcat_name,subcat_img,cat_id)
+				values('".$txtname."','".$subimg."','".$t2."')";
                   //echo $sql;
 				 
 				

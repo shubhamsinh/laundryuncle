@@ -1,13 +1,13 @@
 <?php
 
-require_once("../config/connection.php");
+require_once("../config/dbconn.php");
 
 if(isset($_GET['id']))
 {
 	
 	$id=$_GET['id'];
 	
-	$sql =  "DELETE FROM product WHERE product_id='".$id."'";
+	$sql =  "DELETE FROM service WHERE ser_id='".$id."'";
 	
 	
 	$result=mysqli_query($conn,$sql);

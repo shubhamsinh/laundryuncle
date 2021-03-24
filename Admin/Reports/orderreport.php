@@ -1,12 +1,12 @@
 <?php
 include('config.php');
 $database = new Database();
-$result = $database->runQuery("SELECT (select category_name from category where category_id = c.category_id) as catname , (select sub_category_name from sub_category where sub_category_id = sub.sub_category_id ) as subcatname , sum(item.amount) as total FROM `order_item` item join product p join sub_category sub join category c where item.product_id = p.product_id and p.sub_category_id =sub.sub_category_id and sub.category_id = c.category_id GROUP by item.product_id");
+$result = $database->runQuery("SELECT (select cat_name from category where cat_id = c.cat_id) as cat_name , (select subcat_name from subcategory where subcat_id = sub.subcat_id ) as subcat_name , sum(item.amount) as total FROM `order_item` item join service s join subcategory sub join category c where item.ser_id = s.ser_id and s.subcat_id =sub.subcat_id and sub.cat_id = c.cat_id GROUP by item.ser_id");
 $header = $database->runQuery("SELECT UCASE(`COLUMN_NAME`) 
 FROM `INFORMATION_SCHEMA`.`COLUMNS` 
-WHERE `TABLE_SCHEMA`='leather_vortal' 
+WHERE `TABLE_SCHEMA`='laundry' 
 AND `TABLE_NAME`='user'
-and `COLUMN_NAME` in ('category_name','sub_category_name','total')");
+and `COLUMN_NAME` in ('cat_name','subcat_name','total')");
 require('fpdf/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage("L","A4");

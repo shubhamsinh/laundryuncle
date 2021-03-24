@@ -43,7 +43,7 @@ $usern = $pswd = $a = "";
 					{
 						$row = mysqli_fetch_array($result);
 						$_SESSION['email'] = $username;
-						header("Location:index2.html");
+						header("Location:index1.php");
 					}
 					else
 					{

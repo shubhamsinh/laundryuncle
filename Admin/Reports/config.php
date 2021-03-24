@@ -3,7 +3,7 @@ class Database {
 	private $host = "localhost";
 	private $user = "root";
 	private $password = "";
-	private $database = "leather_vortal";
+	private $database = "laundry";
 	
 	function runQuery($sql) {
 		$conn = new mysqli($this->host,$this->user,$this->password,$this->database);

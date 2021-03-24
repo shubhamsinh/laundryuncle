@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	
 	
 ?>
@@ -43,7 +43,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -97,8 +97,8 @@ include("header.php");
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">area code</label>
-													<input type="text" name="txtcode" class="form-control" id="exampleinputemail" placeholder="sub code">
+                                                    <label for="hf-password" class=" form-control-label">area id</label>
+													<input type="text" name="txtid" class="form-control" id="exampleinputemail" placeholder="sub code">
                                                 </div>
                                                 
                                             </div>
@@ -113,20 +113,20 @@ include("header.php");
 									<?php
 	if($_SERVER["REQUEST_METHOD"]=="POST")
 	{
-		if(isset($_POST["txtname"]) && ($_POST["txtcode"]))
+		if(isset($_POST["txtname"]) && ($_POST["txtid"]))
 		{
 			
 			
 			$txtname=$_POST["txtname"];
-			$txtcode=$_POST["txtcode"];
+			$txtid=$_POST["txtid"];
 			
 			
 		
 			
-			if($txtname!='' && $txtcode!='')
+			if($txtname!='' && $txtid!='')
 			{
-				$sql="insert into area(area_name,area_code)
-				values('".$txtname."','".$txtcode."')";
+				$sql="insert into area(area_name,area_id)
+				values('".$txtname."','".$txtid."')";
                   //echo $sql;
 				 
 				

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-	require_once('../config/connection.php');
+	require_once('../config/dbconn.php');
 	if(isset($_GET['id']) && isset($_GET['name']))
 {
 	$id = $_GET['id'];
 	$name = $_GET['name'];
-	$sql="select * from sub_category where sub_category_id='".$id."'";
+	$sql="select * from subcategory where subcat_id='".$id."'";
 	
     $result=mysqli_query($conn,$sql);
 	$row=mysqli_fetch_array($result);
@@ -15,7 +15,7 @@
 	
 ?>
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <html lang="en">
 
@@ -53,7 +53,7 @@ include("header.php");
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
        
@@ -90,9 +90,9 @@ include("header.php");
 													{
 													?>
 				
-													<option value="<?php echo $row1['category_id'];?>" 
-													<?php if($row1['category_name']==$name) echo "selected"; ?>>
-													<?php echo $row1['category_name'];?>
+													<option value="<?php echo $row1['cat_id'];?>" 
+													<?php if($row1['cat_name']==$name) echo "selected"; ?>>
+													<?php echo $row1['cat_name'];?>
 													</option>
 													<?php 
 													}
@@ -104,12 +104,12 @@ include("header.php");
                                             <div class="row form-group">
                                                 
                                                     <label for="hf-password" class=" form-control-label">sub category name</label>
-													<input type="text" name="txtname" class="form-control"  placeholder="subname" value="<?php echo $row['sub_category_name']?>">
+													<input type="text" name="txtname" class="form-control"  placeholder="subname" value="<?php echo $row['subcat_name']?>">
                                                 </div>
 												 <div class="row form-group">
                                                 
-                                                    <label for="hf-password" class=" form-control-label">sub category description</label>
-													<input type="text" name="txtdesc" class="form-control"  placeholder="sub description" value="<?php echo $row['sub_category_description']?>">
+                                                    <label for="hf-password" class=" form-control-label">sub category image</label>
+													<input type="file" name="subimg" class="form-control"  placeholder="sub image" value="<?php echo $row['subcat_img']?>">
                                                 </div>
                                                 
                                             </div>
@@ -124,16 +124,16 @@ include("header.php");
 									<?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-if (isset($_POST["txtname"]) && isset($_POST["txtdesc"]) && isset($_POST["t2"]) )
+if (isset($_POST["txtname"]) && isset($_POST["subiimg"]) && isset($_POST["t2"]) )
 {
 	$sub_category_name = $_POST["txtname"];
-	$sub_category_description = $_POST["txtdesc"];
+	$sub_category_description = $_POST["subimg"];
 	$cat_id =$_POST["t2"];
 	
 	
 	if ($sub_category_name!='' && $sub_category_description!='' && $cat_id!='')
 	{
-		$sql = "update sub_category set  sub_category_name='".$sub_category_name."' ,sub_category_description='".$sub_category_description."' ,category_id='".$cat_id."'
+		$sql = "update subcategory set  subcat_name='".$sub_category_name."' ,subcat_img='".$sub_category_description."' ,cat_id='".$cat_id."'
 		where sub_category_id = '".$id."' ";
 		$result = mysqli_query($conn,$sql);
 		

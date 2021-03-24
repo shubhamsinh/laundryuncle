@@ -1,8 +1,8 @@
 <?php
-include("header.php");
+include("header1.php");
 ?>
 <?php
-include("../config/connection.php");
+include("../config/dbconn.php");
 $sql="select * from area";
 $result=mysqli_query($conn,$sql);
 ?>
@@ -37,15 +37,16 @@ $result=mysqli_query($conn,$sql);
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
 
-<body class="animsition">
+<body class="animsition" style="padding-left:300px">
     <div class="page-wrapper">
-       
+        
             <!-- MAIN CONTENT-->
             <div class="main-content">
                 <div class="section__content section__content--p30">
@@ -90,7 +91,7 @@ $result=mysqli_query($conn,$sql);
 												
 												<td><?php echo $row['area_name']?></td>
                                                 <td>
-                                                   <?php echo $row['area_code']?>
+                                                   <?php echo $row['area_id']?>
                                                 </td>
 												
 												<td><a href="areadelete.php?id=<?php echo $id?>">
@@ -145,6 +146,10 @@ $result=mysqli_query($conn,$sql);
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="vendor/select2/select2.min.js">
     </script>
+    <script src="vendor/vector-map/jquery.vmap.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.min.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.sampledata.js"></script>
+    <script src="vendor/vector-map/jquery.vmap.world.js"></script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
